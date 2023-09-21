@@ -5,27 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script href = "script.js" defer></script>
+    <script src = "script.js" defer></script>
     <title>Tic-Tac-Toe</title>
 
 </head>
 <body>
-    <div class="header">
-        <h1>Tic-Tac-Toe</h1>
-    </div>
-    <p class="subhead">X and O, get 3 in a Row!</p>
-    <div class="gameboard">
-        <div value="1" class="game-cell"></div>
-        <div value="2" class="game-cell"></div>
-        <div value="3" class="game-cell"></div>
-        <div value="4" class="game-cell"></div>
-        <div value="5" class="game-cell"></div>
-        <div value="6" class="game-cell"></div>
-        <div value="7" class="game-cell"></div>
-        <div value="8" class="game-cell"></div>
-        <div value="9" class="game-cell"></div>
-    </div>
-    <button class="restart">Restart</button>
+    <dialog id="modal" class="modal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h1>Tic-Tac-Toe</h1>
+            </div>
+            <p>Enter you and your opponent's name<p>
+            <div class="player-name">
+                <form action="dialog" class="form">
+                    <div class="form-box">
+                        <label for="player-one">Player One</label>
+                        <input type="text" id="player-one">
+                        <label for="player-two">Player One</label>
+                        <input type="text" id="player-two">
+                        <button type="submit" class="start-game">Start Game!</button>
+                    </div>
+              
+
+                </form>
+            </div>
+        </div>
+
+    </dialog>
+    <section class="game">
+        <div class="header">
+            <h1>Tic-Tac-Toe</h1>
+        </div>
+        <p class="subhead">X and O, get 3 in a Row!</p>
+        <div class="gameboard">
+            <div value="1" class="game-cell"></div>
+            <div value="2" class="game-cell"></div>
+            <div value="3" class="game-cell"></div>
+            <div value="4" class="game-cell"></div>
+            <div value="5" class="game-cell"></div>
+            <div value="6" class="game-cell"></div>
+            <div value="7" class="game-cell"></div>
+            <div value="8" class="game-cell"></div>
+            <div value="9" class="game-cell"></div>
+        </div>
+        <button class="restart">Restart</button>
+    </section>
+
 
 </body>
 </html>

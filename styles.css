@@ -14,13 +14,16 @@
 }
 
 body {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    font-family: 'Indie Flower', cursive;
+}
+
+section {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: var(--dark-blue);
-    color: var(--white);
-    font-family: 'Indie Flower', cursive;
     gap: 20px;
 }
 
@@ -85,4 +88,103 @@ button:hover {
     transition-duration: .5s;
     box-shadow: 0px 0px 12px var(--teal);
     cursor: pointer;
+}
+
+.modal {
+    background-color: var(--dark-blue);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--white);
+    font-size: 1.4rem;
+    border: none;
+}
+
+.modal-header {
+    background-color: var(--mid-dark-blue);
+    padding: 15px;
+    margin: 20px 10px 5px 10px;
+    border-radius: 20px;
+    margin-bottom: 5x;
+    font-size: clamp(15px, 1.5rem, 1.8rem);
+    box-shadow: 0px 0px 10px var(--teal);
+    color: var(--white);
+    text-align: center;
+    align-self: center;
+}
+
+.modal-header h1 {
+    margin: 0px;
+    padding: 0px;
+}
+
+#modal::backdrop {
+    background: #083344;
+}
+
+.modal-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    min-width: 320px;
+    padding: 25px;
+}
+
+.modal-box p {
+    font-size: 1.7rem;
+    margin-top: 10px;
+}
+
+.form-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input {
+    height: 2.3rem;
+    font-family: inherit;
+    font-size: 1.3rem;
+    padding: 10px;
+    background-color: var(--dark-blue);
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: solid 1px var(--teal);
+    color: var(--white);
+}
+
+input:focus {
+    outline: none;
+}    
+
+.form-box button {
+    width: 50%;
+    align-self: center;
+    margin-top: 20px;
+}
+
+@media (max-width: 320px) {
+    input {
+        height: 2.5rem;
+        width: 12rem;
+    }
+
+    .modal-header {
+        font-size: 1.3rem;
+        margin: 0px;
+        align-self: flex-start;
+    }
+
+    .form-box button {
+        align-self: flex-start;
+    }
+
+    .modal-box {
+        margin: 0px;
+        padding: 0px;
+    }
 }

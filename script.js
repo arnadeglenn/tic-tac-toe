@@ -23,13 +23,39 @@ const gameBoard = (function() {
     const _queryBoard = function() {
         const gameCells = document.querySelectorAll('.game-cell');
         gameCells.forEach((cell) => {
-            let cellNumber = cell.getAttribute('value');
-            boardSquare.push(parseInt(cellNumber));
+            let marker = cell.innerHTML;
+            boardSquare.push(marker);
         });
         };
     _queryBoard();
         return {boardSquare};
-    })();
+    })
+(); 
+
+const displayController = (function() {
+    const markerSelect = document.querySelectorAll('.game-cell');
+    let playerTurn = true;                          //true = playerOne, false = playerTwo
+    const placeMarker = function() {
+        markerSelect.forEach((cell) => {
+        cell.addEventListener('click', (e) => {
+            if (cell.innerHTML === "X" || cell.innerHTML === "O") {
+                return;
+            } else if (playerTurn=== true) {
+                cell.innerHTML = playerOne.marker();
+                playerTurn = false;
+            } else if (playerTurn === false) {
+                cell.innerHTML = playerTwo.marker();
+                playerTurn = true;
+            }
+        });
+        })
+    }
+    return {placeMarker};
+})();
+
+displayController.placeMarker();
+
+//gameBoard.boardSquare
 
 const modalForm = document.querySelector('#modal');
 const submitPlayers = document.querySelector(".start-game");
@@ -44,6 +70,7 @@ submitPlayers.addEventListener('click', (e)=> {
 
 
 modalForm.showModal();
+
 
 
 

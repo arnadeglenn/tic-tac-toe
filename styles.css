@@ -57,19 +57,26 @@ section {
     grid-template: repeat(3, 1fr)/repeat(3,1fr);
 }
 
+.game-cell {
+    border: solid 3px var(--teal);
+    font-size: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-cell:hover {
+    cursor: pointer;
+}
+
 @media (max-width: 500px) {
     .gameboard {
         height: 250px; /* Set the height relative to the viewport width */
         width: 250px; /* Set the width relative to the viewport width */
     }
-}
-
-.game-cell {
-    border: solid 3px var(--teal);
-}
-
-.game-cell:hover {
-    cursor: pointer;
+    .game-cell {
+        font-size: 3rem;
+    }
 }
 
 button {

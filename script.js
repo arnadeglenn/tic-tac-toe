@@ -20,17 +20,19 @@ const createPlayer = function (selector) {
 
 const gameBoard = (function() {
     const boardSquare = [];
-    const _queryBoard = function() {
+    const queryBoard = function() {
         const gameCells = document.querySelectorAll('.game-cell');
         gameCells.forEach((cell) => {
             let marker = cell.innerHTML;
             boardSquare.push(marker);
         });
         };
-    _queryBoard();
-        return {boardSquare};
+        return {boardSquare, queryBoard};
     })
 (); 
+
+gameBoard.queryBoard();
+
 
 const displayController = (function() {
     const markerSelect = document.querySelectorAll('.game-cell');
@@ -42,9 +44,13 @@ const displayController = (function() {
                 return;
             } else if (playerTurn=== true) {
                 cell.innerHTML = playerOne.marker();
+                let squareValue = cell.getAttribute('value');
+                gameBoard.boardSquare[`${squareValue}`] = cell.innerHTML;
                 playerTurn = false;
             } else if (playerTurn === false) {
                 cell.innerHTML = playerTwo.marker();
+                let squareValue = cell.getAttribute('value');
+                gameBoard.boardSquare[`${squareValue}`] = cell.innerHTML;
                 playerTurn = true;
             }
         });
@@ -54,8 +60,6 @@ const displayController = (function() {
 })();
 
 displayController.placeMarker();
-
-//gameBoard.boardSquare
 
 const modalForm = document.querySelector('#modal');
 const submitPlayers = document.querySelector(".start-game");

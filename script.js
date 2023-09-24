@@ -47,12 +47,14 @@ const displayController = (function() {
                 let squareValue = cell.getAttribute('value');
                 gameBoard.boardSquare[`${squareValue}`] = cell.innerHTML;
                 winnerCheck();
+                getWinner();
                 playerTurn = false;
             } else if (playerTurn === false) {
                 cell.innerHTML = playerTwo.marker();
                 let squareValue = cell.getAttribute('value');
                 gameBoard.boardSquare[`${squareValue}`] = cell.innerHTML;
                 winnerCheck();
+                getWinner();
                 playerTurn = true;
             }
         });
@@ -71,7 +73,6 @@ const displayController = (function() {
         ) {
             console.log('playerOneWins');
             winner = playerOne.name();
-            return winner;
         } else if (
                 (arr[0]==="O" && arr[1]==="O" && arr[2]==="O")||
                 (arr[3]==="O" && arr[4]==="O" && arr[5]==="O")||
@@ -83,13 +84,15 @@ const displayController = (function() {
                 (arr[2]==="O" && arr[4]==="O" && arr[6]==="O")
             ) {
                 winner = playerTwo.name();
-                return winner;
         } else {
             console.log('Random');
-            winnerName = '';
+            winner = '';
             }   
         };
-    return {placeMarker, winnerCheck, winner};
+    const getWinner = function() {
+         return winner;
+     }
+    return {placeMarker, winnerCheck, getWinner};
 })();
 
 

@@ -37,6 +37,7 @@ const displayController = (function() {
     let playerTurn = true;                          //true = playerOne, false = playerTwo
     let arr = gameBoard.boardSquare;
     const winnerModalShow = document.querySelector('.modal-win');
+    const resetBtn = document.querySelector('.restart-btn');
     const placeMarker = function() {
         markerSelect.forEach((cell) => {
         cell.addEventListener('click', (e) => {
@@ -47,6 +48,7 @@ const displayController = (function() {
                 let squareValue = cell.getAttribute('value');
                 gameBoard.boardSquare[`${squareValue}`] = cell.innerHTML;
                 winnerCheck();
+                newGameModal();
                 newGame();
                 playerTurn = false;
             } else if (playerTurn === false) {
@@ -54,6 +56,7 @@ const displayController = (function() {
                 let squareValue = cell.getAttribute('value');
                 gameBoard.boardSquare[`${squareValue}`] = cell.innerHTML;
                 winnerCheck();
+                newGameModal();
                 newGame();
                 playerTurn = true;
             }
@@ -86,6 +89,7 @@ const displayController = (function() {
             ) {
                 winner = playerTwo.name();
                 winnerModal(playerTwo.name());
+                playerTurn=true;
         } else {
             console.log('Random');
             winner = '';
@@ -100,22 +104,55 @@ const displayController = (function() {
         winnerName.innerHTML = `${winner} Wins!`
         winnerModalShow.showModal();
     }
-    const newGame = function() {
+    const newGameModal = function() {
         const playAgainBtn = document.querySelector(".new-game");
         playAgainBtn.addEventListener('click', (e) => {
             e.preventDefault();
             winnerModalShow.close();
-            gameBoard.boardSquare = [];
+            gameBoard.boardSquare = ['','','','','','','','','',];
+            arr = gameBoard.boardSquare;
             gameBoard.queryBoard();
+            markerSelect.forEach((cell) => {
+                cell.innerHTML = '';
+            })
+            resetPlayerOne();
         })
     }
-    return {placeMarker, winnerCheck, getWinner};
+    const newGame = function() {
+        if (arr.every(element => element === 'X' || element === 'O')) {
+            gameBoard.boardSquare = ['','','','','','','','','',];
+            arr = gameBoard.boardSquare;
+            gameBoard.queryBoard();
+            markerSelect.forEach((cell) => {
+                cell.innerHTML = '';
+            })
+            resetPlayerOne();
+    } else {return}
+    }
+    const resetGame = function() {
+        resetBtn.addEventListener('click', (e) => {
+            gameBoard.boardSquare = ['','','','','','','','','',];
+            arr = gameBoard.boardSquare;
+            gameBoard.queryBoard();
+            markerSelect.forEach((cell) => {
+                cell.innerHTML = '';
+            })
+            resetPlayerOne();
+            console.log("hello");
+        })
+    }
+    const resetPlayerOne = () => {
+        playerTurn = true;
+        return playerTurn;
+    }
+    return {placeMarker, winnerCheck, getWinner, resetGame};
 })();
 
 
 //Function Calls
 displayController.placeMarker();
 gameBoard.queryBoard();
+displayController.resetGame();
 
 const modalForm = document.querySelector('#modal');
 const submitPlayers = document.querySelector(".start-game");

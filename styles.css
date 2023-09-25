@@ -205,6 +205,7 @@ input:focus {
     color: var(--white);
     font-size: 1.4rem;
     border: none;
+    border-radius: 20px;
 }
 
 .modal-win::backdrop {
@@ -223,9 +224,26 @@ input:focus {
     justify-content: center;
     align-items: center;
     gap: 20px;
+    border-radius: 20px;
 }
 
 .winning-player {
     font-size: 2rem;
+    text-align: center;
 }
 
+@media (max-width: 955px) { 
+    .modal-win div {
+        width: 35vw;
+    }
+}
+
+@media (max-width: 550px) {
+    .modal-win {
+        font-size: 1rem;
+    }
+    
+    .modal-win div {
+        width: 70vw;
+    }
+}

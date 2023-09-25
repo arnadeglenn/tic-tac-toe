@@ -36,7 +36,7 @@ const displayController = (function() {
     const markerSelect = document.querySelectorAll('.game-cell');
     let playerTurn = true;                          //true = playerOne, false = playerTwo
     let arr = gameBoard.boardSquare;
-    let winner = '';
+    const winnerModalShow = document.querySelector('.modal-win');
     const placeMarker = function() {
         markerSelect.forEach((cell) => {
         cell.addEventListener('click', (e) => {
@@ -47,14 +47,14 @@ const displayController = (function() {
                 let squareValue = cell.getAttribute('value');
                 gameBoard.boardSquare[`${squareValue}`] = cell.innerHTML;
                 winnerCheck();
-                getWinner();
+                newGame();
                 playerTurn = false;
             } else if (playerTurn === false) {
                 cell.innerHTML = playerTwo.marker();
                 let squareValue = cell.getAttribute('value');
                 gameBoard.boardSquare[`${squareValue}`] = cell.innerHTML;
                 winnerCheck();
-                getWinner();
+                newGame();
                 playerTurn = true;
             }
         });
@@ -73,6 +73,7 @@ const displayController = (function() {
         ) {
             console.log('playerOneWins');
             winner = playerOne.name();
+            winnerModal(playerOne.name());
         } else if (
                 (arr[0]==="O" && arr[1]==="O" && arr[2]==="O")||
                 (arr[3]==="O" && arr[4]==="O" && arr[5]==="O")||
@@ -84,6 +85,7 @@ const displayController = (function() {
                 (arr[2]==="O" && arr[4]==="O" && arr[6]==="O")
             ) {
                 winner = playerTwo.name();
+                winnerModal(playerTwo.name());
         } else {
             console.log('Random');
             winner = '';
@@ -92,6 +94,21 @@ const displayController = (function() {
     const getWinner = function() {
          return winner;
      }
+    const winnerModal = function(winner) {
+        
+        const winnerName = document.querySelector(".winning-player");
+        winnerName.innerHTML = `${winner} Wins!`
+        winnerModalShow.showModal();
+    }
+    const newGame = function() {
+        const playAgainBtn = document.querySelector(".new-game");
+        playAgainBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            winnerModalShow.close();
+            gameBoard.boardSquare = [];
+            gameBoard.queryBoard();
+        })
+    }
     return {placeMarker, winnerCheck, getWinner};
 })();
 
@@ -103,16 +120,16 @@ gameBoard.queryBoard();
 const modalForm = document.querySelector('#modal');
 const submitPlayers = document.querySelector(".start-game");
 
+
+
+modalForm.showModal();
+
 submitPlayers.addEventListener('click', (e)=> {
     e.preventDefault();
     modalForm.close();
     playerOne = createPlayer('#player-one');
     playerTwo = createPlayer('#player-two');
 });
-
-
-
-modalForm.showModal();
 
 
 

@@ -195,3 +195,37 @@ input:focus {
         padding: 0px;
     }
 }
+
+.modal-win {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--white);
+    font-size: 1.4rem;
+    border: none;
+}
+
+.modal-win::backdrop {
+    background-color: white;
+    opacity: .3;
+}
+
+.modal-win div {
+    background-color: var(--dark-blue);
+    width: 20vw;
+    margin: 0px;
+    border: 3px solid var(--teal);
+    padding: 30px 15px 30px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.winning-player {
+    font-size: 2rem;
+}
+
